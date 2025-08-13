@@ -1,23 +1,24 @@
 package de.fherold.employee_management_api.controller;
 
-import java.util.List;
+import de.fherold.employee_management_api.dto.EmployeeDto;
+import de.fherold.employee_management_api.service.EmployeeService;
+import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.fherold.employee_management_api.dto.EmployeeDto;
-import de.fherold.employee_management_api.service.EmployeeService;
-import lombok.AllArgsConstructor;
+import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/employees")
 @AllArgsConstructor
@@ -50,8 +51,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) {
-        employeeService.deleteEmployee(employeeId);
-        return ResponseEntity.ok("Der Mitarbeiter wurde aus der Datenbank gelöscht.");
+    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") Long employeeId) {
+        return ResponseEntity.noContent().build();
     }
 }
