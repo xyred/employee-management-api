@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import de.fherold.employee_management_api.dto.EmployeeDto;
 import de.fherold.employee_management_api.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Controller for creating test data, only active in the 'dev' profile.
+ */
+
+@Slf4j
 @RestController
 @RequestMapping("/api/test")
 @Profile("dev") // Only active in dev profile
@@ -29,10 +35,10 @@ public class TestDataController {
                     "test@example.com");
 
             EmployeeDto savedEmployee = employeeService.createEmployee(testEmployee);
+            log.info("Test data created successfully: {}", savedEmployee);
             return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println("Error creating test data: " + e.getMessage());
-            e.printStackTrace();
+            log.error("Error creating test data", e);
             return ResponseEntity.internalServerError().build();
         }
     }

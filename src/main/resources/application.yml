@@ -34,3 +34,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+---
+logging:
+  file:
+    name: logs/employee-api.log
+  level:
+    root: INFO
+    de.fherold: DEBUG
+    org.springframework: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
