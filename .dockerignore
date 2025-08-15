@@ -1,0 +1,9 @@
+target/*
+!target/*.jar
+.git/
+.gitignore
+logs/
+*.log
+.vscode/
+.env*
+!.env.example
